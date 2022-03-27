@@ -1,7 +1,7 @@
 import cookieParser from "cookie-parser";
 import express from "express";
 import bodyParser from "body-parser";
-// const pool = require("./src/db/...");
+import connectDB from "./src/db/mongoose.js";
 
 const port = process.env.PORT || 3000;
 //test
@@ -18,10 +18,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // app.use(upload.array());
 import example from "./src/routers/example.routers.js";
+import { registerUser } from "./src/controller/auth.controller.js";
 
 // app.use("/example", MIDDLEWARE, example);
 app.use("/ok", example);
+app.use("/auth", registerUser);
 //db connect()
+connectDB();
+
 app.listen(port, () =>
   console.log(`Resort managemnt app listening on port ${port}!`)
 );
