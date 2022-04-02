@@ -43,6 +43,43 @@ export const loginUser = async (req, res) => {
     );
     const token = await user.getToken();
     res.send({ user, token });
+  } catch (error) {
+    console.log(typeof error);
+    console.log(error);
+    res.status(401).json({
+      success: false,
+      message: "Email hoặc mật khẩu không chính xác!",
+    });
+  }
+};
+
+//Change Password
+export const changePw = async (req, res) => {
+  const { email, currentpassword, newpassword, retypenewpassword } = req.body;
+  try {
+    const user = await User.findOne({ email: email });
+    const isMatchPassword = await bcrypt.compare(
+      currentpassword,
+      user.password
+    );
+
+    if (isMatchPassword) {
+      if (newpassword == retypenewpassword) {
+        user.password = newpassword;
+        const token = await user.getToken();
+        res.json({ success: true, user, token });
+      } else {
+        res.status(500).json({
+          success: false,
+          message: "Nhập sai mật khẩu.",
+        });
+      }
+    } else {
+      res.status(500).json({
+        success: false,
+        message: "Nhập sai mật khẩu hiện tại.",
+      });
+    }
   } catch (err) {
     console.log(err);
     res.status(400).send(err);
