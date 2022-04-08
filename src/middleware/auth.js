@@ -12,7 +12,9 @@ async function auth(req, res, next) {
     if (!user) {
       throw new Error("INVALID TOKEN!");
     }
-
+    req.id = user._id;
+    req.user = user;
+    req.token = token;
     next();
   } catch (err) {
     console.log(err);
