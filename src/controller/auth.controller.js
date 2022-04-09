@@ -53,6 +53,20 @@ export const loginUser = async (req, res) => {
   }
 };
 
+//log out
+export const logOut = async (req, res) => {
+  try {
+    req.user.tokens = req.user.tokens.filter((token) => {
+      return token.token != req.token;
+    });
+    await req.user.save();
+    console.log("Log out success!");
+    res.send({ message: "Log out success!" });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 //Change Password
 export const changePw = async (req, res) => {
   const { email, currentpassword, newpassword, retypenewpassword } = req.body;
