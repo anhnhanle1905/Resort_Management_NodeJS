@@ -22,8 +22,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // app.use(upload.array());
 import auth from "./src/routers/auth.routers.js";
+import booking from "./src/routers/booking.routers.js";
 
 app.use("/auth", auth);
+app.use("/booking", booking);
 //db connect()
 connectDB();
 

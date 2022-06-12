@@ -27,6 +27,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     minLength: 6,
   },
+  // booking: [{ type: mongoose.Schema.Types.ObjectId, ref: "Bookings" }],
   tokens: [
     {
       token: {
