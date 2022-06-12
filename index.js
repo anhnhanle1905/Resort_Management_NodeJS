@@ -26,10 +26,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 import auth from "./src/routers/auth.routers.js";
 import booking from "./src/routers/booking.routers.js";
 import favouriteRoom from "./src/routers/favouriteRoom.routers.js";
+import awesomeService from "./src/routers/awesomeService.routers.js";
 
 app.use("/auth", auth);
 app.use("/booking", booking);
 app.use("/favouriteRoom", favouriteRoom);
+app.use("/awesomeService", awesomeService);
 //db connect()
 connectDB();
 
