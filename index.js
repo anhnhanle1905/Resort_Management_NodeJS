@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import helmet from "helmet";
 import morgan from "morgan";
 import connectDB from "./src/db/mongoose.js";
+import cors from "cors";
 
 const port = process.env.PORT || 3000;
 //test
@@ -13,6 +14,7 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 
+app.use(cors());
 app.use(helmet());
 app.use(morgan("common"));
 app.use(cookieParser());
