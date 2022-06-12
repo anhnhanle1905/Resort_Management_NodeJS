@@ -27,11 +27,13 @@ import auth from "./src/routers/auth.routers.js";
 import booking from "./src/routers/booking.routers.js";
 import favouriteRoom from "./src/routers/favouriteRoom.routers.js";
 import awesomeService from "./src/routers/awesomeService.routers.js";
+import imageGallery from "./src/routers/imageGallery.routers.js";
 
 app.use("/auth", auth);
 app.use("/booking", booking);
 app.use("/favouriteRoom", favouriteRoom);
 app.use("/awesomeService", awesomeService);
+app.use("/imageGallery", imageGallery);
 //db connect()
 connectDB();
 
